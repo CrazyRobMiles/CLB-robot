@@ -1,6 +1,8 @@
 """
 Chapter 1 example — Pixel colours and sequences
 """
+import sys
+sys.path.insert(0, '..')
 import time
 import robot
 

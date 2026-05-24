@@ -3,6 +3,8 @@ Chapter 2 example — Motor movement
 
 Demonstrates: move, turn, arc, nowait + wait, and speed control with seconds.
 """
+import sys
+sys.path.insert(0, '..')
 import time
 import robot
 

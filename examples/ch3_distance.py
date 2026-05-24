@@ -3,6 +3,8 @@ Chapter 3 example — Distance sensor
 
 Demonstrates reading distance, conditional colour, and simple obstacle avoidance.
 """
+import sys
+sys.path.insert(0, '..')
 import time
 import robot
 

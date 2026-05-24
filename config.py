@@ -11,12 +11,12 @@ RIGHT_PINS = [8, 9, 10, 11]
 
 # NeoPixel strip
 PIXEL_PIN   = 6
-PIXEL_COUNT = 8
+PIXEL_COUNT = 12
 
 # HC-SR04 ultrasonic sensor
 # ECHO must be connected through a voltage divider (5V → 3.3V)
-TRIGGER_PIN = 5
-ECHO_PIN    = 19
+TRIGGER_PIN = 17
+ECHO_PIN    = 16
 
 # Wheel geometry — adjust these to improve movement accuracy
 WHEEL_DIAMETER_MM = 69.0
