@@ -14,7 +14,7 @@ robot.init()
 for _ in range(20):
     mm = robot.distance()
     print("Distance:", mm, "mm")
-    time.sleep(0.5)
+    robot.check(); time.sleep(0.5)
 
 # --- Colour changes with distance ---
 # Green when clear, yellow when close, red when very close
@@ -28,7 +28,7 @@ for _ in range(50):
         robot.colour(robot.YELLOW)
     else:
         robot.colour(robot.GREEN)
-    time.sleep(0.2)
+    robot.check(); time.sleep(0.2)
 
 # --- Simple obstacle avoidance ---
 # Move forward; back up and turn when something is within 150 mm.

@@ -29,11 +29,19 @@ Pin defaults match the standard Hull Pixelbot wiring.  Override any of them in
 the init() call.
 """
 
+import sys
+import select as _select
 import time
 import random as _random
 from lib.stepper import StepperPair
 from lib.distance import HCSR04
 from lib.pixels import PixelStrip
+
+# Non-blocking stdin poll — only returns data when a console is connected
+# (USB CDC in Thonny / mpremote). When running standalone on battery there
+# is no input, so check() becomes a harmless no-op.
+_poll = _select.poll()
+_poll.register(sys.stdin, _select.POLLIN)
 
 _stepper = None
 _sensor  = None
@@ -125,10 +133,19 @@ def colour(rgb):
 # Movement
 # ---------------------------------------------------------------------------
 
+def check():
+    """Stop the robot and raise KeyboardInterrupt if any console input is waiting."""
+    if _poll.poll(0):
+        sys.stdin.read(1)
+        _stepper.stop()
+        raise KeyboardInterrupt
+
+
 def wait():
     """Block until the current move, turn, or arc has finished."""
     while _stepper.is_moving:
         time.sleep_ms(10)
+        check()
 
 
 def moving():
@@ -137,6 +154,7 @@ def moving():
 
 
 def move(mm, seconds=None, nowait=False):
+    check()
     """
     Move the robot forward (positive mm) or backward (negative mm).
 
@@ -156,6 +174,7 @@ def move(mm, seconds=None, nowait=False):
 
 
 def turn(degrees, seconds=None, nowait=False):
+    check()
     """
     Turn the robot on the spot.  Positive degrees = clockwise.
 
@@ -169,6 +188,7 @@ def turn(degrees, seconds=None, nowait=False):
 
 
 def arc(radius_mm, angle_deg, seconds=None, nowait=False):
+    check()
     """
     Move the robot along a circular arc.
 
