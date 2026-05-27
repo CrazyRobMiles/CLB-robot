@@ -15,21 +15,24 @@ robot.colour(robot.GREEN)
 robot.move(200)      # forward 200 mm, pixel stays green throughout
 robot.colour(robot.BLACK)
 
-robot.check(); time.sleep(1)
+robot.check()
+time.sleep(1)
 
 # --- Turn on the spot ---
 robot.colour(robot.BLUE)
 robot.turn(90)       # clockwise quarter-turn
 robot.colour(robot.BLACK)
 
-robot.check(); time.sleep(1)
+robot.check()
+time.sleep(1)
 
 # --- Arc ---
 robot.colour(robot.CYAN)
 robot.arc(150, 90)   # quarter circle, 150 mm radius
 robot.colour(robot.BLACK)
 
-robot.check(); time.sleep(1)
+robot.check()
+time.sleep(1)
 
 # --- nowait: pixel changes colour while motors are still moving ---
 robot.colour(robot.GREEN)
@@ -38,7 +41,8 @@ robot.colour(robot.BLUE)       # pixel turns blue at once
 robot.wait()                   # now block until the move finishes
 robot.colour(robot.BLACK)
 
-robot.check(); time.sleep(1)
+robot.check()
+time.sleep(1)
 
 # --- Drive a square ---
 for _ in range(4):

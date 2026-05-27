@@ -143,8 +143,8 @@ class StepperPair:
         self._queue(+arc_len, -arc_len, delay)
 
     def arc(self, radius_mm, angle_deg, seconds=None):
-        rL = radius_mm - self._spacing / 2.0
-        rR = radius_mm + self._spacing / 2.0
+        rL = radius_mm + self._spacing / 2.0
+        rR = radius_mm - self._spacing / 2.0
         dL = 2 * math.pi * rL * (angle_deg / 360.0)
         dR = 2 * math.pi * rR * (angle_deg / 360.0)
         delay = self._calc_delay(dL, dR, seconds)
